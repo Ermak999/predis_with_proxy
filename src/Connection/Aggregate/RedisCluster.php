@@ -491,7 +491,7 @@ class RedisCluster implements ClusterInterface, \IteratorAggregate, \Countable
         list($slot, $connectionID) = explode(' ', $details, 2);
 
         if(defined('REDIS_PORT') && defined('USE_REDIS_PROXY')) {
-            list($host, $port) = explode(' ', $connectionID, 2);
+            list($host, $port) = explode(':', $connectionID, 2);
             $connectionID = $host . ':' . REDIS_PORT;
         }
         if (!$connection = $this->getConnectionById($connectionID)) {
